@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://7deb8v72ndru"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_kjqit"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3qakx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pbsoa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ttgpt"]
+radius = 0.582466
+height = 2.13428
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_kjqit")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_3qakx")
+skeleton = NodePath("../..")
+
+[node name="Eye" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.105162, 0.683258, -0.424178)
+mesh = SubResource("SphereMesh_pbsoa")
+
+[node name="Eye2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.119596, 0.683258, -0.424178)
+mesh = SubResource("SphereMesh_pbsoa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ttgpt")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.971673, 0.236329, 0, -0.236329, 0.971673, 0, 0.910137, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot"]
+spring_length = 2.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
