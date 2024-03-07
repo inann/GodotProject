@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciiyi50n833w"]
+[gd_scene load_steps=9 format=3 uid="uid://ciiyi50n833w"]
 
 [ext_resource type="PackedScene" uid="uid://7deb8v72ndru" path="res://player_as_characterbody.tscn" id="1_kkqqj"]
 
@@ -22,6 +22,10 @@ glow_enabled = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pp5y4"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_5wmlc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwdih"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -43,3 +47,30 @@ shape = SubResource("ConcavePolygonShape3D_pp5y4")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_kkqqj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8544, 0)
+
+[node name="Platform1" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.3836, 0, 0, 0, 0.348867, 0, 0, 0, 10.6307, 0, 0, -24.774)
+mesh = SubResource("BoxMesh_5wmlc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform1/StaticBody3D"]
+shape = SubResource("BoxShape3D_cwdih")
+
+[node name="Platform2" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.3836, 0, 0, 0, 0.348867, 0, 0, 0, 10.6307, 5.82735, 0, -39.1383)
+mesh = SubResource("BoxMesh_5wmlc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2/StaticBody3D"]
+shape = SubResource("BoxShape3D_cwdih")
+
+[node name="Platform3" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.3836, 0, 0, 0, 0.348867, 0, 0, 0, 10.6307, -4.95891, 0, -52.8212)
+mesh = SubResource("BoxMesh_5wmlc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3/StaticBody3D"]
+shape = SubResource("BoxShape3D_cwdih")
